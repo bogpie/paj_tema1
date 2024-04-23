@@ -93,7 +93,7 @@ public class Test1 {
             .orElseThrow()
             .toString()
     );
-    
+
     assertEquals(
         "Ms. Smith Michelle",
         bank
@@ -107,20 +107,20 @@ public class Test1 {
             .orElseThrow()
             .getClientGreeting()
     );
-    
-        assertEquals(
-                "Ms. Smith Michelle",
-                bank
-                .getClients()
-                .stream()
-                .filter(
-                        c -> c
-                        .getName()
-                        .equals(SMITH_MICHELLE))
-                .findFirst()
-                .orElseThrow()
-                .toString()
-        );
+
+    assertEquals(
+        "Ms. Smith Michelle",
+        bank
+            .getClients()
+            .stream()
+            .filter(
+                c -> c
+                    .getName()
+                    .equals(SMITH_MICHELLE))
+            .findFirst()
+            .orElseThrow()
+            .toString()
+    );
   }
 
 }
