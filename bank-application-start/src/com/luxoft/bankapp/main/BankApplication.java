@@ -33,7 +33,11 @@ public class BankApplication {
 
   private static void statisticsMode() {
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Entered statistics mode. Type 'display statistic' to display statistics.");
+    System.out.println(
+        "Entered statistics mode. "
+        + "Type 'display statistic' to display statistics. "
+        + "Type 'exit' to exit statistics mode."
+    );
 
     while (true) {
       String command = scanner.nextLine();
