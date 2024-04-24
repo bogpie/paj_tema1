@@ -80,24 +80,38 @@ public class BankReportTest {
 
   @Test
   public void testGetNumberOfAccounts() {
-    assertEquals(4, bankReport.getNumberOfAccounts(bank));
+    assertEquals(
+        "Bank should have 4 accounts",
+        4,
+        bankReport.getNumberOfAccounts(bank)
+    );
   }
 
   @Test
   public void testGetClientsSorted() {
     var expected = List.of("Jane Doe", "John Doe");
-    assertEquals(expected, bankReport.getClientsSorted(bank).stream().map(Client::getName).toList());
+    assertEquals(
+        "Clients should be sorted by name",
+        expected,
+        bankReport.getClientsSorted(bank).stream().map(Client::getName).toList()
+    );
   }
 
   @Test
   public void testGetTotalSumInAccounts() {
-    assertEquals(10000, bankReport.getTotalSumInAccounts(bank), 0.0);
+    assertEquals(
+        "Total sum in accounts should be 10000",
+        10000,
+        bankReport.getTotalSumInAccounts(bank),
+        0.0
+    );
   }
 
   @Test
   public void testGetClientsByCity() {
     var expected = List.of("John Doe");
     assertEquals(
+        "Client in Atlanta should be John Doe",
         expected,
         bankReport
             .getClientsByCity(bank)
@@ -109,6 +123,7 @@ public class BankReportTest {
 
     expected = List.of("Jane Doe");
     assertEquals(
+        "Client in Boston should be Jane Doe",
         expected,
         bankReport
             .getClientsByCity(bank)

@@ -17,12 +17,10 @@ public class Bank {
   // Task 1.1: Clients as set
   private final Set<Client> clients = new HashSet<>();
   private final List<ClientRegistrationListener> listeners = new ArrayList<>();
-
+  private final EmailService emailService;
   private int printedClients = 0;
   private int emailedClients = 0;
   private int debuggedClients = 0;
-
-  private EmailService emailService;
 
   public Bank() {
     listeners.add(new PrintClientListener());

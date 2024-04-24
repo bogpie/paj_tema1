@@ -58,8 +58,11 @@ public class Email {
     private List<Client> cc;
     private String subject;
     private String body;
-
     public Builder() {
+    }
+
+    public final Email build() {
+      return new Email(this);
     }
 
     public final Builder from(Client from) {
