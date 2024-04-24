@@ -81,7 +81,7 @@ public class Test1 {
     );
 
     assertEquals(
-        "Ms. Smith John",
+        "Mr. Smith John",
         bank
             .getClients()
             .stream()
