@@ -1,5 +1,6 @@
 package com.luxoft.bankapp.domain;
 
+import com.luxoft.bankapp.email.EmailService;
 import com.luxoft.bankapp.exceptions.ClientExistsException;
 import com.luxoft.bankapp.utils.ClientRegistrationListener;
 
@@ -21,10 +22,17 @@ public class Bank {
   private int emailedClients = 0;
   private int debuggedClients = 0;
 
+  private EmailService emailService;
+
   public Bank() {
     listeners.add(new PrintClientListener());
     listeners.add(new EmailNotificationListener());
     listeners.add(new DebugListener());
+    emailService = new EmailService();
+  }
+
+  public EmailService getEmailService() {
+    return emailService;
   }
 
   public int getPrintedClients() {

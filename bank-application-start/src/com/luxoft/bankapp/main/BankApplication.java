@@ -26,9 +26,10 @@ public class BankApplication {
 
     // Check if the -statistics argument is passed
     if (args.length > 0 && args[0].equals("-statistics")) {
-      // Enter special mode
       statisticsMode();
     }
+
+    bank.getEmailService().close();
   }
 
   private static void statisticsMode() {
@@ -36,7 +37,7 @@ public class BankApplication {
     System.out.println(
         "Entered statistics mode. "
         + "Type 'display statistic' to display statistics. "
-        + "Type 'exit' to exit statistics mode."
+        + "Type 'exit' or just enter to exit statistics mode."
     );
 
     while (true) {
@@ -46,7 +47,7 @@ public class BankApplication {
         BankReport bankReport = new BankReport();
         printBankReport(bankReport);
         return;
-      } else if ("exit".equals(command)) {
+      } else if ("exit".equals(command) || command.isEmpty()) {
         System.out.println("Exiting statistics mode.");
         return;
       } else {
