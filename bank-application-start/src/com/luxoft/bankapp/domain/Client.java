@@ -8,11 +8,19 @@ public class Client {
 
   private String name;
   private Gender gender;
+  private String city;
   private Set<Account> accounts = new HashSet<>();
 
   public Client(String name, Gender gender) {
     this.name = name;
     this.gender = gender;
+    this.city = "Unknown";
+  }
+
+  public Client(String name, Gender gender, String city) {
+    this.name = name;
+    this.gender = gender;
+    this.city = city;
   }
 
   @Override
@@ -20,7 +28,6 @@ public class Client {
     return
         obj instanceof Client client &&
         name.equals(client.name);
-     
   }
 
   @Override
@@ -36,12 +43,24 @@ public class Client {
     return name;
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public Gender getGender() {
     return gender;
   }
 
+  public void setGender(String gender) {
+    this.gender = Gender.valueOf(gender);
+  }
+
   public Set<Account> getAccounts() {
     return Collections.unmodifiableSet(accounts);
+  }
+
+  public void setAccounts(Set<Account> accounts) {
+    this.accounts = accounts;
   }
 
   public String getClientGreeting() {
@@ -52,20 +71,15 @@ public class Client {
     }
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public String getCity() {
+    return city;
   }
 
-  public void setGender(String gender) {
-    this.gender = Gender.valueOf(gender);
-  }
-
-  public void setAccounts(Set<Account> accounts) {
-    this.accounts = accounts;
+  public void setCity(String city) {
+    this.city = city;
   }
 
   @Override
-
   public String toString() {
     return getClientGreeting();
   }

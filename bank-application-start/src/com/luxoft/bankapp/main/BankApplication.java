@@ -9,7 +9,10 @@ import com.luxoft.bankapp.domain.SavingAccount;
 import com.luxoft.bankapp.exceptions.ClientExistsException;
 import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
+import com.luxoft.bankapp.report.BankReport;
 import com.luxoft.bankapp.service.BankService;
+
+import java.util.Scanner;
 
 public class BankApplication {
 
@@ -20,6 +23,35 @@ public class BankApplication {
     modifyBank();
     printBalance();
     BankService.printMaximumAmountToWithdraw(bank);
+
+    // Check if the -statistics argument is passed
+    if (args.length > 0 && args[0].equals("-statistics")) {
+      // Enter special mode
+      statisticsMode();
+    }
+  }
+
+  private static void statisticsMode() {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Entered statistics mode. Type 'display statistic' to display statistics.");
+
+    while (true) {
+      String command = scanner.nextLine();
+
+      if ("display statistic".equals(command)) {
+        BankReport bankReport = new BankReport();
+        printBankReport(bankReport);
+        return;
+      } else if ("exit".equals(command)) {
+        System.out.println("Exiting statistics mode.");
+        return;
+      } else {
+        System.out.println(
+            "Unrecognized command. Type 'display statistic' to display statistics, "
+            + "or 'exit' to exit statistics mode."
+        );
+      }
+    }
   }
 
   private static void modifyBank() {
@@ -77,4 +109,14 @@ public class BankApplication {
     }
   }
 
+  private static void printBankReport(BankReport bankReport) {
+    System.out.format("Number of clients: %d%n", bankReport.getNumberOfClients(bank));
+    System.out.println("Number of accounts: " + bankReport.getNumberOfAccounts(bank));
+    System.out.println("Clients in alphabetical order." + bankReport.getClientsSorted(bank));
+    System.out.println("Total sum in accounts: " + bankReport.getTotalSumInAccounts(bank));
+    System.out.println("Accounts sorted by sum: " + bankReport.getAccountsSortedBySum(bank));
+    System.out.println("Total credit granted: " + bankReport.getBankCreditSum(bank));
+    System.out.println("Customer accounts: " + bankReport.getCustomerAccounts(bank));
+    System.out.println("Clients by city: " + bankReport.getClientsByCity(bank));
+  }
 }
