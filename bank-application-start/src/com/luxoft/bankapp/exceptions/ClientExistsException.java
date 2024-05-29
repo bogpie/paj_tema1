@@ -1,10 +1,14 @@
 package com.luxoft.bankapp.exceptions;
 
-public class ClientExistsException extends BankException {
-	private static final long serialVersionUID = -8368249553360028667L;
+import java.io.Serial;
 
-	public ClientExistsException(String message) {
-		super(message);
-	}
+public class ClientExistsException extends BankException {
+
+  @Serial
+  private static final long serialVersionUID = -8368249553360028667L;
+
+  public ClientExistsException(String message) {
+    super(message);
+  }
 
 }

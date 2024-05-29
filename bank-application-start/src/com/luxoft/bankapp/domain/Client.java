@@ -6,10 +6,10 @@ import java.util.Set;
 
 public class Client {
 
-  private String name;
-  private Gender gender;
-  private String city;
-  private Set<Account> accounts = new HashSet<>();
+  private final String name;
+  private final Gender gender;
+  private final String city;
+  private final Set<Account> accounts = new HashSet<>();
 
   public Client(String name, Gender gender) {
     this.name = name;
@@ -43,24 +43,8 @@ public class Client {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Gender getGender() {
-    return gender;
-  }
-
-  public void setGender(String gender) {
-    this.gender = Gender.valueOf(gender);
-  }
-
   public Set<Account> getAccounts() {
     return Collections.unmodifiableSet(accounts);
-  }
-
-  public void setAccounts(Set<Account> accounts) {
-    this.accounts = accounts;
   }
 
   public String getClientGreeting() {
@@ -73,10 +57,6 @@ public class Client {
 
   public String getCity() {
     return city;
-  }
-
-  public void setCity(String city) {
-    this.city = city;
   }
 
   @Override

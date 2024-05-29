@@ -6,6 +6,7 @@ import com.luxoft.bankapp.domain.Client;
 import com.luxoft.bankapp.domain.Gender;
 import com.luxoft.bankapp.email.Email;
 import com.luxoft.bankapp.email.EmailService;
+import com.luxoft.bankapp.exceptions.EmailException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class EmailServiceTest {
   }
 
   @Test
-  public void testSendNotificationEmail() {
+  public void testSendNotificationEmail() throws EmailException {
     EmailService emailService = new EmailService();
 
     for (int i = 0; i < NO_EMAILS; i++) {

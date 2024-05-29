@@ -1,5 +1,7 @@
 package com.luxoft.bankapp.email;
 
+import com.luxoft.bankapp.exceptions.EmailException;
+
 @SuppressWarnings("CallToPrintStackTrace")
 public class EmailService {
 
@@ -39,11 +41,13 @@ public class EmailService {
     ++count;
   }
 
-  public void sendNotificationEmail(Email email) {
+  public void sendNotificationEmail(Email email) throws EmailException {
     synchronized (lock) {
       if (running) {
         queue.add(email);
         lock.notifyAll();
+      } else {
+        throw new EmailException("Email service is not running");
       }
     }
   }

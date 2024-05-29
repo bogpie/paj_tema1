@@ -9,6 +9,7 @@ import com.luxoft.bankapp.domain.Client;
 import com.luxoft.bankapp.domain.Gender;
 import com.luxoft.bankapp.domain.SavingAccount;
 import com.luxoft.bankapp.exceptions.ClientExistsException;
+import com.luxoft.bankapp.exceptions.EmailException;
 import com.luxoft.bankapp.report.BankReport;
 import com.luxoft.bankapp.report.BankReportInterface;
 import com.luxoft.bankapp.report.BankReportStreams;
@@ -70,6 +71,8 @@ public class BankReportTest {
       bank.addClient(client2);
     } catch (ClientExistsException e) {
       System.out.println("Client already exists");
+    } catch (EmailException e) {
+      System.out.println("Email exception");
     }
   }
 

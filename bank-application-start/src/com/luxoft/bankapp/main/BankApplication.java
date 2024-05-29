@@ -7,6 +7,7 @@ import com.luxoft.bankapp.domain.Client;
 import com.luxoft.bankapp.domain.Gender;
 import com.luxoft.bankapp.domain.SavingAccount;
 import com.luxoft.bankapp.exceptions.ClientExistsException;
+import com.luxoft.bankapp.exceptions.EmailException;
 import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
 import com.luxoft.bankapp.report.BankReport;
@@ -14,11 +15,13 @@ import com.luxoft.bankapp.service.BankService;
 
 import java.util.Scanner;
 
+@SuppressWarnings("CallToPrintStackTrace")
 public class BankApplication {
 
+  public static final String NOT_ENOUGH_FUNDS_FORMAT = "Not enough funds for account %d, balance: %.2f, tried to extract amount: %.2f%n";
   private static Bank bank;
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws EmailException {
     bank = new Bank();
     modifyBank();
     printBalance();
@@ -59,7 +62,7 @@ public class BankApplication {
     }
   }
 
-  private static void modifyBank() {
+  private static void modifyBank() throws EmailException {
     Client client1 = new Client("John", Gender.MALE);
     Account account1 = new SavingAccount(1, 100);
     Account account2 = new CheckingAccount(2, 100, 20);
@@ -70,6 +73,8 @@ public class BankApplication {
       BankService.addClient(bank, client1);
     } catch (ClientExistsException e) {
       System.out.format("Cannot add an already existing client: %s%n", client1.getName());
+    } catch (EmailException e) {
+      System.out.println("Email exception");
     }
 
     account1.deposit(100);
@@ -78,7 +83,7 @@ public class BankApplication {
     } catch (OverdraftLimitExceededException e) {
       System.out.format("Not enough funds for account %d, balance: %.2f, overdraft: %.2f, tried to extract amount: %.2f%n", e.getId(), e.getBalance(), e.getOverdraft(), e.getAmount());
     } catch (NotEnoughFundsException e) {
-      System.out.format("Not enough funds for account %d, balance: %.2f, tried to extract amount: %.2f%n", e.getId(), e.getBalance(), e.getAmount());
+      System.out.format(NOT_ENOUGH_FUNDS_FORMAT, e.getId(), e.getBalance(), e.getAmount());
     }
 
     try {
@@ -86,7 +91,7 @@ public class BankApplication {
     } catch (OverdraftLimitExceededException e) {
       System.out.format("Not enough funds for account %d, balance: %.2f, overdraft: %.2f, tried to extract amount: %.2f%n", e.getId(), e.getBalance(), e.getOverdraft(), e.getAmount());
     } catch (NotEnoughFundsException e) {
-      System.out.format("Not enough funds for account %d, balance: %.2f, tried to extract amount: %.2f%n", e.getId(), e.getBalance(), e.getAmount());
+      System.out.format(NOT_ENOUGH_FUNDS_FORMAT, e.getId(), e.getBalance(), e.getAmount());
     }
 
     try {
@@ -94,7 +99,7 @@ public class BankApplication {
     } catch (OverdraftLimitExceededException e) {
       System.out.format("Not enough funds for account %d, balance: %.2f, overdraft: %.2f, tried to extract amount: %.2f%n", e.getId(), e.getBalance(), e.getOverdraft(), e.getAmount());
     } catch (NotEnoughFundsException e) {
-      System.out.format("Not enough funds for account %d, balance: %.2f, tried to extract amount: %.2f%n", e.getId(), e.getBalance(), e.getAmount());
+      System.out.format(NOT_ENOUGH_FUNDS_FORMAT, e.getId(), e.getBalance(), e.getAmount());
     }
 
     try {

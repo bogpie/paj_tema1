@@ -8,6 +8,7 @@ import com.luxoft.bankapp.domain.Client;
 import com.luxoft.bankapp.domain.Gender;
 import com.luxoft.bankapp.domain.SavingAccount;
 import com.luxoft.bankapp.exceptions.ClientExistsException;
+import com.luxoft.bankapp.exceptions.EmailException;
 import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
 import com.luxoft.bankapp.service.BankService;
@@ -51,7 +52,7 @@ public class Test1 {
   }
 
   @Test
-  public void testBank() throws ClientExistsException {
+  public void testBank() throws ClientExistsException, EmailException {
     Bank bank = new Bank();
     Client client1 = new Client(SMITH_JOHN, Gender.MALE);
     client1.addAccount(new SavingAccount(1, 1000.0));

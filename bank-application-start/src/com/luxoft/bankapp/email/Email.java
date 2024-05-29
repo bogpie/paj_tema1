@@ -31,26 +31,6 @@ public class Email {
            '}';
   }
 
-  public Client getFrom() {
-    return from;
-  }
-
-  public List<Client> getTo() {
-    return to;
-  }
-
-  public List<Client> getCc() {
-    return cc;
-  }
-
-  public String getSubject() {
-    return subject;
-  }
-
-  public String getBody() {
-    return body;
-  }
-
   public static class Builder {
 
     private Client from;
@@ -58,7 +38,9 @@ public class Email {
     private List<Client> cc;
     private String subject;
     private String body;
+
     public Builder() {
+      // Builder constructor
     }
 
     public final Email build() {

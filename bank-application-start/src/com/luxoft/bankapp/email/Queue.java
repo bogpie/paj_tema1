@@ -8,10 +8,6 @@ public class Queue {
 
   private final List<Email> emails;
 
-  public Queue(List<Email> emails) {
-    this.emails = emails;
-  }
-
   public Queue() {
     this.emails = new ArrayList<>();
   }
