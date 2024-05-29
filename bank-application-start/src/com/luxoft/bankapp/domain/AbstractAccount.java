@@ -2,26 +2,15 @@ package com.luxoft.bankapp.domain;
 
 import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 
-public abstract class AbstractAccount implements Account {
+public abstract class AbstractAccount implements Account, Cloneable {
 
   private final int id;
-  
+
   protected double balance;
 
   protected AbstractAccount(int id, double balance) {
     this.id = id;
     this.balance = balance;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    return obj instanceof Account account &&
-           id == account.getId();
-  }
-
-  @Override
-  public int hashCode() {
-    return id;
   }
 
   @Override
@@ -55,4 +44,23 @@ public abstract class AbstractAccount implements Account {
     return balance;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    return obj instanceof Account account &&
+           id == account.getId();
+  }
+
+  @Override
+  public int hashCode() {
+    return id;
+  }
+
+  @Override
+  public AbstractAccount clone() {
+    try {
+      return (AbstractAccount) super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new AssertionError();
+    }
+  }
 }
