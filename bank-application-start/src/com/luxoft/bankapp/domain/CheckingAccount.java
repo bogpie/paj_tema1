@@ -5,7 +5,12 @@ import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
 
 public class CheckingAccount extends AbstractAccount {
 
-  private double overdraft;
+  private final double overdraft;
+
+  public CheckingAccount() {
+    super(0, 0);
+    overdraft = 0;
+  }
 
   public CheckingAccount(int id, double balance, double overdraft) {
     super(id, balance);
@@ -39,5 +44,19 @@ public class CheckingAccount extends AbstractAccount {
 
   public double maximumAmountToWithdraw() {
     return getBalance() + overdraft;
+  }
+
+
+  @Override
+  public boolean equals(Object obj) {
+    return
+        obj instanceof Account account &&
+        super.equals(account) &&
+        overdraft == ((CheckingAccount) account).overdraft;
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode() + Double.hashCode(overdraft);
   }
 }

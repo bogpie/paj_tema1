@@ -5,6 +5,7 @@ import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 public abstract class AbstractAccount implements Account {
 
   private final int id;
+  
   protected double balance;
 
   protected AbstractAccount(int id, double balance) {

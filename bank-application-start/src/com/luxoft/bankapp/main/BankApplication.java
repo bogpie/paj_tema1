@@ -37,7 +37,7 @@ public class BankApplication {
     System.out.println(
         "Entered statistics mode. "
         + "Type 'display statistic' to display statistics. "
-        + "Type 'exit' or just enter twic to exit statistics mode."
+        + "Type 'exit' or just enter twice to exit statistics mode."
     );
 
     while (true) {
